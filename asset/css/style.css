@@ -1,0 +1,137 @@
+@font-face {
+  font-family: poppins;
+  src: url(./asset/font/Poppins-Regular.ttf);
+}
+* {
+  margin: 0;
+  padding: 0;
+  font-family: poppins, Arial, Helvetica, sans-serif;
+}
+body {
+  background-color: #070f2b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.container {
+  background-color: #1b1a55;
+  padding: 50px;
+  border-radius: 20px;
+  width: 425px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.container > .header {
+  display: flex;
+  padding: 10px;
+  position: relative;
+  border-bottom: 1px solid #9290c3;
+}
+.container > .header > h2 {
+  letter-spacing: 1px;
+  color: #9290c3;
+}
+.container > .header > button {
+  position: absolute;
+  right: 25px;
+  bottom: -18px;
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  border: none;
+  color: #070f2b;
+  font-size: 30px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #535c91;
+  box-shadow: 0 2px 5px;
+}
+.container > .header > button:hover {
+  background-color: #535c917e;
+}
+.container > .header > button:active {
+  background-color: #535c91;
+}
+.container > ul {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.container > ul > li {
+  list-style: none;
+  display: flex;
+  border-bottom: 1px solid #9290c3;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+.container > ul > li > span:first-child {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding-left: 10px;
+}
+.container > ul > li > span:first-child > input {
+  height: 20px;
+  width: 20px;
+}
+.container > ul > li > span:first-child > label {
+  color: #9290c3;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+.container > ul > li > span:last-child {
+  color: #9290c38c;
+  font-size: 12px;
+  display: flex;
+  align-items: end;
+  padding-right: 20px;
+}
+
+.form-input {
+  position: absolute;
+  background-color: #070f2b80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+.form-input > form {
+  padding: 40px;
+  border-radius: 15px;
+  background-color: #1b1a55;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.315);
+}
+.form-input > form > input {
+  width: 300px;
+  height: 40px;
+  border-radius: 10px;
+  padding-left: 20px;
+  outline: none;
+  border: none;
+  background-color: tras;
+}
+.form-input > form > button {
+  margin-left: 10px;
+  height: 36px;
+  width: 150px;
+  border: none;
+  color: #070f2b;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  background-color: #535c91;
+  box-shadow: 0 2px 5px;
+  border-radius: 10px;
+}
+.form-input.hide {
+  display: none;
+}
