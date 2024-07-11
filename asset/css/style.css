@@ -1,6 +1,6 @@
 @font-face {
   font-family: poppins;
-  src: url(./asset/font/Poppins-Regular.ttf);
+  src: url(../font/Poppins-Regular.ttf);
 }
 * {
   margin: 0;
@@ -132,6 +132,6 @@ body {
   box-shadow: 0 2px 5px;
   border-radius: 10px;
 }
-.form-input.hide {
+.hide {
   display: none;
 }

@@ -2,13 +2,16 @@ const formInputDiv = document.getElementById("form");
 const btnInput = document.getElementById("btn-input");
 const result = document.getElementById("todo-list");
 const formInput = formInputDiv.getElementsByTagName("form").item(0);
+const dataNull = document.getElementById("data-null");
 const data = [
-  {
-    text: 'makan malam',
-    time: new Date().getTime(),
-    finis: false,
-  },
+  { text: "Tugas Todolist", time: new Date().getTime(), finis: true },
+  { text: "Tugas Form", time: new Date().getTime(), finis: true },
 ];
+if (data[0]) {
+} else {
+  dataNull.classList.toggle("hide");
+}
+
 btnInput.addEventListener("click", () => {
   formInputDiv.classList.toggle("hide");
 });
@@ -29,7 +32,7 @@ formInput.addEventListener("submit", (e) => {
   result.innerHTML = "";
   todoList();
   formInputDiv.classList.toggle("hide");
-  e.currentTarget.reset()
+  e.currentTarget.reset();
 });
 
 todoList();
@@ -57,6 +60,5 @@ function todoList() {
     liTodo.appendChild(span1);
     liTodo.appendChild(span2);
     result.appendChild(liTodo);
-    console.log(result);
   });
 }
