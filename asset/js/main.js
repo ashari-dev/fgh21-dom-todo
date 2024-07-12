@@ -3,15 +3,12 @@ const btnInput = document.getElementById("btn-input");
 const result = document.getElementById("todo-list");
 const formInput = formInputDiv.getElementsByTagName("form").item(0);
 const dataNull = document.getElementById("data-null");
-const data = [
-  { text: "Tugas Todolist", time: new Date().getTime(), finis: true },
-  { text: "Tugas Form", time: new Date().getTime(), finis: true },
-];
-if (data[0]) {
-} else {
-  dataNull.classList.toggle("hide");
+let data = [];
+const cekData = window.localStorage.getItem("DATA");
+console.log(cekData);
+if (cekData !== null) {
+  data = JSON.parse(cekData);
 }
-
 btnInput.addEventListener("click", () => {
   formInputDiv.classList.toggle("hide");
 });
@@ -24,11 +21,13 @@ formInputDiv.addEventListener("click", () => {
 
 formInput.addEventListener("submit", (e) => {
   e.preventDefault();
-  data.push({
+  const dataRow = {
     text: e.target.todo.value,
     time: new Date().getTime(),
     finis: false,
-  });
+  };
+  data.push(dataRow);
+  window.localStorage.setItem("DATA", JSON.stringify(data));
   result.innerHTML = "";
   todoList();
   formInputDiv.classList.toggle("hide");
