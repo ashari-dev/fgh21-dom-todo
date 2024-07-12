@@ -5,10 +5,11 @@ const formInput = formInputDiv.getElementsByTagName("form").item(0);
 const dataNull = document.getElementById("data-null");
 let data = [];
 const cekData = window.localStorage.getItem("DATA");
-console.log(cekData);
+const dataLocalstorage = JSON.parse(cekData);
 if (cekData !== null) {
-  data = JSON.parse(cekData);
+  data = dataLocalstorage;
 }
+
 btnInput.addEventListener("click", () => {
   formInputDiv.classList.toggle("hide");
 });
@@ -24,17 +25,28 @@ formInput.addEventListener("submit", (e) => {
   const dataRow = {
     text: e.target.todo.value,
     time: new Date().getTime(),
-    finis: false,
   };
   data.push(dataRow);
-  window.localStorage.setItem("DATA", JSON.stringify(data));
+  window.localStorage.setItem(`DATA`, JSON.stringify(data));
   result.innerHTML = "";
   todoList();
   formInputDiv.classList.toggle("hide");
   e.currentTarget.reset();
 });
 
-todoList();
+function removeData(i) {
+  const delData = dataLocalstorage.filter(
+    (item) => item !== dataLocalstorage[i]
+  );
+  window.localStorage.clear("DATA");
+  window.localStorage.setItem(`DATA`, JSON.stringify(delData));
+  // console.log(delData);
+  result.innerHTML = "";
+  todoList();
+}
+function editData(i) {
+  console.log(i);
+}
 function todoList() {
   data.forEach((e, i) => {
     const hours = new Date(e.time).getHours();
@@ -43,14 +55,29 @@ function todoList() {
     const text = document.createElement("label");
     text.setAttribute("for", `checkbox-${i + 1}`);
     text.innerText = e.text;
-    const checkbox = document.createElement("input");
-    checkbox.setAttribute("type", "checkbox");
-    checkbox.setAttribute("id", `checkbox-${i + 1}`);
-    if (e.finis) {
-      checkbox.checked = true;
-    }
+    // const checkbox = document.createElement("input");
+    // checkbox.setAttribute("type", "checkbox");
+    // checkbox.setAttribute("id", `checkbox-${i + 1}`);
+    // if (e.finis) {
+    //   checkbox.checked = true;
+    // }
+
+    const btnDone = document.createElement("input");
+    btnDone.setAttribute("type", "button");
+    btnDone.setAttribute("value", "done");
+    btnDone.onclick = () => {
+      removeData(i);
+    };
+    const btnEdit = document.createElement("input");
+    btnEdit.setAttribute("type", "button");
+    btnEdit.setAttribute("value", "edit");
+    btnEdit.onclick = () => {
+      editData(i);
+    };
     const span1 = document.createElement("span");
-    span1.appendChild(checkbox);
+    span1.appendChild(btnDone);
+    span1.appendChild(btnEdit);
+    // span1.appendChild(checkbox);
     span1.appendChild(text);
     const span2 = document.createElement("span");
     span2.innerText = `${hours < 12 ? hours : hours - 12} : ${minute} ${
@@ -61,3 +88,4 @@ function todoList() {
     result.appendChild(liTodo);
   });
 }
+todoList();
